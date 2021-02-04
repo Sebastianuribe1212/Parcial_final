@@ -5,3 +5,5 @@ clase cañon defensivo
 clase cañon ofensivo
 clase bala
 clase lanzador (donde se integraran todos los elementos)
+
+Necesitamos un gui en donde meteremos los datos de los cañones
