@@ -1,0 +1,7 @@
+Idea principal: hacer una interfaz gráfica que me muestre los disparos que me pide el problema,
+
+Qué necesitamos para resolverlo?:
+clase cañon defensivo
+clase cañon ofensivo
+clase bala
+clase lanzador (donde se integraran todos los elementos)
