@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Posición y canon ofensivo</string>
+    <string>Posición x canon ofensivo</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -65,7 +65,7 @@
     <string>Posición y canon defensivo</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="XcanonOfensivo">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -75,7 +75,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="YcanonOfensivo">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -85,7 +85,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="XcanonDefensivo">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -95,7 +95,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="YcanonDefensivo">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -105,7 +105,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="IngresaDatos">
    <property name="geometry">
     <rect>
      <x>160</x>
