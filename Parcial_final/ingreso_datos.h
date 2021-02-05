@@ -15,30 +15,32 @@ public:
     explicit Ingreso_datos(QWidget *parent = nullptr);
     ~Ingreso_datos();
 
-    QString getXcanonOfensivo() const;
-    void setXcanonOfensivo(const QString &value);
 
-    QString getYcanonOfensivo() const;
-    void setYcanonOfensivo(const QString &value);
-
-    QString getXcanonDefensivo() const;
-    void setXcanonDefensivo(const QString &value);
-
-    QString getYcanonDefensivo() const;
-    void setYcanonDefensivo(const QString &value);
 
     bool getSalir() const;
     void setSalir(bool value);
+
+    int getXcanonOfensivo() const;
+    void setXcanonOfensivo(int value);
+
+    int getYcanonOfensivo() const;
+    void setYcanonOfensivo(int value);
+
+    int getXcanonDefensivo() const;
+    void setXcanonDefensivo(int value);
+
+    int getYcanonDefensivo() const;
+    void setYcanonDefensivo(int value);
 
 private slots:
     void on_IngresaDatos_clicked();
 
 private:
     Ui::Ingreso_datos *ui;
-    QString XcanonOfensivo;
-    QString YcanonOfensivo;
-    QString XcanonDefensivo;
-    QString YcanonDefensivo;
+    int XcanonOfensivo;
+    int YcanonOfensivo;
+    int XcanonDefensivo;
+    int YcanonDefensivo;
 
     bool salir=false;
 };

@@ -13,54 +13,14 @@ Ingreso_datos::~Ingreso_datos()
     delete ui;
 }
 
-QString Ingreso_datos::getXcanonOfensivo() const
-{
-    return XcanonOfensivo;
-}
-
-void Ingreso_datos::setXcanonOfensivo(const QString &value)
-{
-    XcanonOfensivo = value;
-}
-
-QString Ingreso_datos::getYcanonOfensivo() const
-{
-    return YcanonOfensivo;
-}
-
-void Ingreso_datos::setYcanonOfensivo(const QString &value)
-{
-    YcanonOfensivo = value;
-}
-
-QString Ingreso_datos::getXcanonDefensivo() const
-{
-    return XcanonDefensivo;
-}
-
-void Ingreso_datos::setXcanonDefensivo(const QString &value)
-{
-    XcanonDefensivo = value;
-}
-
-QString Ingreso_datos::getYcanonDefensivo() const
-{
-    return YcanonDefensivo;
-}
-
-void Ingreso_datos::setYcanonDefensivo(const QString &value)
-{
-    YcanonDefensivo = value;
-}
-
 void Ingreso_datos::on_IngresaDatos_clicked()
 {
-    //QString Xo,Yo,Xd,Yd;
+    int Xo,Yo,Xd,Yd;
 
-    QString Xo=ui->XcanonOfensivo->text();
-    QString Yo=ui->YcanonOfensivo->text();
-    QString Xd=ui->XcanonDefensivo->text();
-    QString Yd=ui->YcanonDefensivo->text();
+    QString::number (Xo=ui->XcanonOfensivo->value());
+    QString::number (Yo=ui->YcanonOfensivo->value());
+    QString::number (Xd=ui->XcanonDefensivo->value());
+    QString::number (Yd=ui->YcanonDefensivo->value());
 
     this->setXcanonOfensivo(Xo);
     this->setYcanonOfensivo(Yo);
@@ -68,6 +28,46 @@ void Ingreso_datos::on_IngresaDatos_clicked()
     this->setYcanonDefensivo(Yd);
 
     this->setSalir(true);
+}
+
+int Ingreso_datos::getYcanonDefensivo() const
+{
+    return YcanonDefensivo;
+}
+
+void Ingreso_datos::setYcanonDefensivo(int value)
+{
+    YcanonDefensivo = value;
+}
+
+int Ingreso_datos::getXcanonDefensivo() const
+{
+    return XcanonDefensivo;
+}
+
+void Ingreso_datos::setXcanonDefensivo(int value)
+{
+    XcanonDefensivo = value;
+}
+
+int Ingreso_datos::getYcanonOfensivo() const
+{
+    return YcanonOfensivo;
+}
+
+void Ingreso_datos::setYcanonOfensivo(int value)
+{
+    YcanonOfensivo = value;
+}
+
+int Ingreso_datos::getXcanonOfensivo() const
+{
+    return XcanonOfensivo;
+}
+
+void Ingreso_datos::setXcanonOfensivo(int value)
+{
+    XcanonOfensivo = value;
 }
 
 bool Ingreso_datos::getSalir() const
