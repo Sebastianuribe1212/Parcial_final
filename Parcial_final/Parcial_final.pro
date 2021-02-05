@@ -10,14 +10,17 @@ CONFIG += c++11
 
 SOURCES += \
     canon_o.cpp \
+    ingreso_datos.cpp \
     lanzador.cpp \
     main.cpp
 
 HEADERS += \
     canon_o.h \
+    ingreso_datos.h \
     lanzador.h
 
-FORMS +=
+FORMS += \
+    ingreso_datos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
