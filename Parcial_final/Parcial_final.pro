@@ -12,19 +12,22 @@ SOURCES += \
     canon_d.cpp \
     canon_o.cpp \
     ingreso_datos.cpp \
-    integracion.cpp \
     lanzador.cpp \
-    main.cpp
+    launch.cpp \
+    main.cpp \
+    menu.cpp
 
 HEADERS += \
     canon_d.h \
     canon_o.h \
     ingreso_datos.h \
-    integracion.h \
-    lanzador.h
+    lanzador.h \
+    launch.h \
+    menu.h
 
 FORMS += \
-    ingreso_datos.ui
+    ingreso_datos.ui \
+    menu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

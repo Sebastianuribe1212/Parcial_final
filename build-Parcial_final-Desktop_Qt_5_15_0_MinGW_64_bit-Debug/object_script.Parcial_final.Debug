@@ -1,0 +1,13 @@
+debug/canon_d.o
+debug/canon_o.o
+debug/ingreso_datos.o
+debug/lanzador.o
+debug/launch.o
+debug/main.o
+debug/menu.o
+debug/moc_canon_d.o
+debug/moc_canon_o.o
+debug/moc_ingreso_datos.o
+debug/moc_lanzador.o
+debug/moc_launch.o
+debug/moc_menu.o

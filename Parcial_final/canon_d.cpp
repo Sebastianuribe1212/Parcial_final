@@ -3,6 +3,8 @@
 
 canon_d::canon_d(QObject *parent): QObject(parent)
 {
+    //this->setPosx(950);
+    //this->setPosy(550);
 setPos(getPosx(),getPosy());
 }
 
@@ -32,6 +34,6 @@ QRectF canon_d::boundingRect() const
 
 void canon_d::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
+    painter->setBrush(Qt::blue);
     painter->drawEllipse(boundingRect());
 }

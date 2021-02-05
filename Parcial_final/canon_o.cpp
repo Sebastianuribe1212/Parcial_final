@@ -2,7 +2,10 @@
 
 canon_o::canon_o(QObject *parent): QObject(parent)
 {
-setPos(getPosx(),getPosy());
+
+   // this->setPosx(50);
+   //this->setPosy(550);
+    setPos(getPosx(),getPosy());
 }
 
 int canon_o::getPosy() const

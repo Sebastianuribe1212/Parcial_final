@@ -87,8 +87,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="minimum">
+    <number>10</number>
+   </property>
    <property name="maximum">
-    <number>950</number>
+    <number>500</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="XcanonDefensivo">
@@ -100,8 +103,11 @@
      <height>22</height>
     </rect>
    </property>
-   <property name="maximum">
+   <property name="minimum">
     <number>550</number>
+   </property>
+   <property name="maximum">
+    <number>950</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="YcanonOfensivo">
@@ -113,8 +119,11 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="minimum">
+    <number>100</number>
+   </property>
    <property name="maximum">
-    <number>950</number>
+    <number>550</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="YcanonDefensivo">
@@ -125,6 +134,9 @@
      <width>71</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="minimum">
+    <number>100</number>
    </property>
    <property name="maximum">
     <number>550</number>
