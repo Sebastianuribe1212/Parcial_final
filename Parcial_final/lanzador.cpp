@@ -58,12 +58,12 @@ void lanzador::Actualizacion1()
 void lanzador::Lanzamiento1()
 {
     int flag = 0;
-        float x,y, pi = 3.1416, g = 9.8, auxX,auxY;
+        float x,y, pi = 3.1416, g = 9.8;
         float Vxo,Vy0;
         int V0o = 0;
         int t = 0;
         int angle = 0;
-        float aux =this->getXcanonOfensivo()-this->getXcanonDefensivo();
+
 
         for(V0o = 5; ; V0o += 5){
             for(angle = 0; angle < 90; angle++){
@@ -93,9 +93,7 @@ void lanzador::Lanzamiento1()
 
                         flag += 1;
                         V0o += 50;
-                         //qDebug()<<"entra a eso";
 
-                        //disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
                         break;
                     }
                     if(y < 0){
@@ -104,13 +102,13 @@ void lanzador::Lanzamiento1()
                 }
                 if(flag == 3) break;
 
-               // disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
+
             }
             if(flag == 3) break;
-            //disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
+
         }
         if(flag != 3){
-            //cout << "No impacto en los disparos esperados"<< endl;
+
              qDebug()<<"no impacta";
             disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
         }
@@ -163,9 +161,6 @@ void lanzador::grafica(int t, int V0o,int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
-
-
-
 
             num=t/10.0;
 

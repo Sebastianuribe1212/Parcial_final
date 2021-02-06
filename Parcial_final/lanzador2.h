@@ -12,7 +12,7 @@
 #include <QList>
 #include "canon_o.h"
 #include "canon_d.h"
-#include "balao.h"
+#include "balad.h"
 
 class lanzador2: public QGraphicsView
 {
@@ -40,7 +40,7 @@ public:
 
 
     float aux2 =0;
-    balaO *prueba1;
+    balad *prueba1;
 
     int getXcanonOfensivo() const;
     void setXcanonOfensivo(int value);
@@ -53,11 +53,11 @@ public:
     void grafica(int t,  int V0o, int angle );
     void grafica2(int t, int V0o, int angle );
     void grafica3(int t, int V0o, int angle );
-    QList<balaO*> diez_bolas();
+    QList<balad *> diez_bolas();
 
-    QList<balaO*> balaOf= diez_bolas();
-    QList<balaO*> balaOf2=diez_bolas();
-    QList<balaO*> balaOf3=diez_bolas();
+    QList<balad *> balaOf= diez_bolas();
+    QList<balad *> balaOf2=diez_bolas();
+    QList<balad *> balaOf3=diez_bolas();
 
 
 

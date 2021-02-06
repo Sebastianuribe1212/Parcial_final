@@ -1,3 +1,4 @@
+release/balad.o
 release/balao.o
 release/canon_d.o
 release/canon_o.o
@@ -7,6 +8,7 @@ release/lanzador2.o
 release/launch.o
 release/main.o
 release/menu.o
+release/moc_balad.o
 release/moc_balao.o
 release/moc_canon_d.o
 release/moc_canon_o.o

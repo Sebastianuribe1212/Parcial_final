@@ -1,3 +1,4 @@
+debug/balad.o
 debug/balao.o
 debug/canon_d.o
 debug/canon_o.o
@@ -7,6 +8,7 @@ debug/lanzador2.o
 debug/launch.o
 debug/main.o
 debug/menu.o
+debug/moc_balad.o
 debug/moc_balao.o
 debug/moc_canon_d.o
 debug/moc_canon_o.o
