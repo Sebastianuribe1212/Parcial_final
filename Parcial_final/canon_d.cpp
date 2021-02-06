@@ -3,9 +3,7 @@
 
 canon_d::canon_d(QObject *parent): QObject(parent)
 {
-    //this->setPosx(950);
-    //this->setPosy(550);
-setPos(getPosx(),getPosy());
+
 }
 
 int canon_d::getPosy() const
