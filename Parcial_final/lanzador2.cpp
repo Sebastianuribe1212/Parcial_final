@@ -1,3 +1,4 @@
+//se lanza al presionar el segundo boton
 #include "lanzador2.h"
 #include <QDebug>
 
@@ -11,7 +12,7 @@ lanzador2::lanzador2(QWidget * parent)
     setScene(scene);
     view = new QGraphicsView(this);
     view->setScene(scene);
-    view->scale(1,-1);
+    view->scale(1,-1);//esto es para graficar en la escena como si fuera un plano cartesiano
 
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -27,12 +28,6 @@ lanzador2::lanzador2(QWidget * parent)
     defensivo = new canon_d();
     scene->addItem(defensivo);
 
-    /*balad = new balad();
-    balad->setPosx(500);
-    balad->setPosy(300);
-    balad->setPos(500,300);*/
-
-    //scene->addItem(balad);
     time = new QTimer;
     time->start(200);
     connect(time,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
@@ -41,7 +36,7 @@ lanzador2::lanzador2(QWidget * parent)
 }
 
 
-
+//la funcion actualizacion le da la posicion a los cañones
 void lanzador2::Actualizacion1()
 {
     ofensivo->setPosx(this->getXcanonOfensivo());
@@ -51,10 +46,11 @@ void lanzador2::Actualizacion1()
     defensivo->setPosx(this->getXcanonDefensivo());
     defensivo->setPosy(this->getYcanonDefensivo());
     defensivo->setPos(this->getXcanonDefensivo(),this->getYcanonDefensivo());
-    //qDebug()<<"Datos ingresados en launcher";
-    //disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
-}
 
+}
+/*La funcion lanzamiento encuentra los datos en los que la bala impacta, al encontrar uno, guarda sus
+datos en listas para ser usados màs tarde para graficarlos
+*/
 void lanzador2::Lanzamiento1()
 {
     int flag = 0;
@@ -78,12 +74,6 @@ void lanzador2::Lanzamiento1()
 
                     if(sqrt(pow((this->getXcanonDefensivo() - x),2)+pow((this->getYcanonDefensivo()- y),2)) < 0.025*(this->getXcanonDefensivo())){
                         if(y<0) y = 0;
-
-                        /*balad *prueba = new balad();
-                        prueba->setPosx(x);
-                        prueba->setPosy(y);
-                        prueba->setPos(x,y);
-                        scene->addItem(prueba);*/
                             vooo1.push_back(V0o);
                             angleoo1.push_back(angle);
                             tiempo.push_back(t);
@@ -118,10 +108,10 @@ void lanzador2::Lanzamiento1()
                 this->setV0o(vooo1.at(i));
             }
             else if(i==1){
-                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
+                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));//graficamos la primera linea de balas defensivas
             }
             else if(i==2){
-                grafica3(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
+                grafica3(tiempo.at(i),vooo1.at(i),angleoo1.at(i));//graficamos la segunda  linea de balas esta es la defensivas
             }
         }
         prueba1 = new balad();
@@ -133,10 +123,6 @@ void lanzador2::Lanzamiento1()
 void lanzador2::grafica_fluida()
 {
      float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
-    //float aux2=0;
-
-        //aux = this->getT()/10;
-
         aux2 += this->getT()/100;
         vyo= this->getV0o()*sin(this->getAngle()*pi/180)-g*aux;
         auxX = (this->getXcanonOfensivo()+(this->getV0o()*aux2)-40);
@@ -146,14 +132,13 @@ void lanzador2::grafica_fluida()
         prueba1->setPosy(auxY);
         prueba1->setPos(auxX,auxY);
 
-        //qDebug()<<"Graficandoo";
    if(aux2 == this->getT()){
        delete prueba1;
         disconnect(time,SIGNAL(timeout()), this,SLOT(grafica_fluida()));
         qDebug()<<"Desconectoooo!";
     }
 }
-
+//ingresan los datos para poner en la escena la secuencia de balas
 void lanzador2::grafica(int t, int V0o,int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
@@ -163,7 +148,7 @@ void lanzador2::grafica(int t, int V0o,int angle)
          for (int i = 0 ; i <balaOf.size(); i++) {
                 aux += num;
              vyo= V0o*sin(angle*pi/180)-g*aux;
-             auxX = (this->getXcanonDefensivo()+(V0o*-cos(angle*pi/180)*aux))-40;
+             auxX = (this->getXcanonDefensivo()+(V0o*-cos(angle*pi/180)*aux))-40;//le damos el angulo negativo para hacer el disparo hacia el otro lado
              auxY = this->getYcanonDefensivo()+vyo*aux-(0.5*g*(aux*aux))+40;
              balaOf.at(i)->setPosx(auxX);
              balaOf.at(i)->setPosy(auxY);
@@ -172,10 +157,8 @@ void lanzador2::grafica(int t, int V0o,int angle)
              qDebug()<<"creada una X: "<<auxX<< "Y: "<<auxY<<"aux: "<<aux;
 
          }
-
-
 }
-
+//ingresan los datos para poner en la escena la secuencia de balas
 void lanzador2::grafica2(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
@@ -196,12 +179,12 @@ void lanzador2::grafica2(int t, int V0o, int angle)
 
          }
 }
-
+//ingresan los datos para poner en la escena la secuencia de balas
 void lanzador2::grafica3(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
-            num=t/10.0;
+            num=t/10.0;//a el tiempo lo dividimos en 10 para que las 10 balas esten separadas por la misma distancia
 
          for (int i = 0 ; i <balaOf3.size(); i++) {
                 aux += num;
@@ -218,7 +201,7 @@ void lanzador2::grafica3(int t, int V0o, int angle)
 
          }
 }
-
+//creamos la lista de balas defensivas
 QList<balad *> lanzador2::diez_bolas()
 {
     QList<balad*>bala;

@@ -1,9 +1,7 @@
+//esta se lanza cuando se presiona el cuarto boton
 #include "lanzador4.h"
 
 #include <QDebug>
-
-
-
 
 lanzador4::lanzador4(QWidget * parent)
 {
@@ -12,7 +10,7 @@ lanzador4::lanzador4(QWidget * parent)
     setScene(scene);
     view = new QGraphicsView(this);
     view->setScene(scene);
-    view->scale(1,-1);
+    view->scale(1,-1);//esto es para graficar en la escena como si fuera un plano cartesiano
 
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -27,13 +25,6 @@ lanzador4::lanzador4(QWidget * parent)
 
     defensivo = new canon_d();
     scene->addItem(defensivo);
-
-    /*BalaO = new balaO();
-    BalaO->setPosx(500);
-    BalaO->setPosy(300);
-    BalaO->setPos(500,300);*/
-
-    //scene->addItem(BalaO);
     time = new QTimer;
     time->start(200);
     connect(time,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
@@ -52,8 +43,6 @@ void lanzador4::Actualizacion1()
     defensivo->setPosx(this->getXcanonDefensivo());
     defensivo->setPosy(this->getYcanonDefensivo());
     defensivo->setPos(this->getXcanonDefensivo(),this->getYcanonDefensivo());
-    //qDebug()<<"Datos ingresados en launcher";
-    //disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
 }
 
 void lanzador4::Lanzamiento1()
@@ -128,11 +117,11 @@ void lanzador4::Lanzamiento1()
         }
         prueba1 = new balaO();
         scene->addItem(prueba1);
-        //connect(time,SIGNAL(timeout()), this,SLOT(grafica_fluida()));
+
         disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
 }
 
-
+//grafica las balas ofensivas
 
 void lanzador4::grafica(int t, int V0o,int angle)
 {
@@ -154,11 +143,7 @@ void lanzador4::grafica(int t, int V0o,int angle)
              qDebug()<<"creada una X: "<<auxX<< "Y: "<<auxY<<"aux: "<<aux;
 
          }
-
-
 }
-
-
 
 void lanzador4::dispDefensivos()
 {
@@ -226,7 +211,7 @@ void lanzador4::dispDefensivos()
     }
 }
 
-
+//grafica las balas defensivas
 void lanzador4::grafica2(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
@@ -250,6 +235,8 @@ void lanzador4::grafica2(int t, int V0o, int angle)
 
          }
 }
+
+//lista de balas ofensivas
 QList<balaO *> lanzador4::diez_bolas()
 {
     QList<balaO*>bala;
@@ -277,7 +264,7 @@ QList<balaO *> lanzador4::diez_bolas()
     return bala;
 }
 
-
+//lista de balas defensivas
 QList<balad *> lanzador4::diez_bolasDef()
 {
     QList<balad*>bala;
@@ -305,6 +292,7 @@ QList<balad *> lanzador4::diez_bolasDef()
     return bala;
 }
 
+//funciones get y set
 
 int lanzador4::getXcanonOfensivo() const
 {

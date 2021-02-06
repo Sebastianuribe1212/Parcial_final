@@ -1,3 +1,4 @@
+//gui que nos posibilita el ingreso de la posicion de los cañones
 #include "ingreso_datos.h"
 #include "ui_ingreso_datos.h"
 
@@ -12,7 +13,7 @@ Ingreso_datos::~Ingreso_datos()
 {
     delete ui;
 }
-
+//al presionar el boton nos guarda los datos para ser usados
 void Ingreso_datos::on_IngresaDatos_clicked()
 {
     int Xo,Yo,Xd,Yd;
@@ -30,6 +31,7 @@ void Ingreso_datos::on_IngresaDatos_clicked()
     this->setSalir(true);
 }
 
+//funciones get y set
 int Ingreso_datos::getYcanonDefensivo() const
 {
     return YcanonDefensivo;

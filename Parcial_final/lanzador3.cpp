@@ -1,3 +1,4 @@
+//se lanza cuando presionamos el trecer boton del menu
 #include "lanzador3.h"
 #include <QDebug>
 
@@ -9,7 +10,7 @@ lanzador3::lanzador3(QWidget * parent)
     setScene(scene);
     view = new QGraphicsView(this);
     view->setScene(scene);
-    view->scale(1,-1);
+    view->scale(1,-1);//esto es para graficar en la escena como si fuera un plano cartesiano
 
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -24,13 +25,6 @@ lanzador3::lanzador3(QWidget * parent)
 
     defensivo = new canon_d();
     scene->addItem(defensivo);
-
-    /*BalaO = new balaO();
-    BalaO->setPosx(500);
-    BalaO->setPosy(300);
-    BalaO->setPos(500,300);*/
-
-    //scene->addItem(BalaO);
     time = new QTimer;
     time->start(200);
     connect(time,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
@@ -49,8 +43,7 @@ void lanzador3::Actualizacion1()
     defensivo->setPosx(this->getXcanonDefensivo());
     defensivo->setPosy(this->getYcanonDefensivo());
     defensivo->setPos(this->getXcanonDefensivo(),this->getYcanonDefensivo());
-    //qDebug()<<"Datos ingresados en launcher";
-    //disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
+
 }
 
 void lanzador3::Lanzamiento1()
@@ -128,7 +121,7 @@ void lanzador3::Lanzamiento1()
 }
 
 
-
+//grafica de balas ofensivas
 void lanzador3::grafica(int t, int V0o,int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
@@ -149,10 +142,8 @@ void lanzador3::grafica(int t, int V0o,int angle)
              qDebug()<<"creada una X: "<<auxX<< "Y: "<<auxY<<"aux: "<<aux;
 
          }
-
-
 }
-
+//grafica de balas defensivas
 void lanzador3::grafica2(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
@@ -176,7 +167,7 @@ void lanzador3::grafica2(int t, int V0o, int angle)
 }
 
 
-
+//lista de balas ofensivas
 QList<balaO *> lanzador3::diez_bolas()
 {
     QList<balaO*>bala;
@@ -203,7 +194,7 @@ QList<balaO *> lanzador3::diez_bolas()
 
     return bala;
 }
-
+//lista de balas defensivas
 QList<balad *> lanzador3::diez_bolasDef()
 {
     QList<balad*>bala;

@@ -1,3 +1,4 @@
+//dibuja un circulo en la posicion dada por el usuario de color azul representando el cañon
 #include "canon_d.h"
 
 
@@ -25,6 +26,8 @@ void canon_d::setPosx(int value)
 {
     posx = value;
 }
+
+//damos atributo de color
 QRectF canon_d::boundingRect() const
 {
     return QRectF(-1*50,-1*50,2*50,2*50);

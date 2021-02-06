@@ -1,8 +1,6 @@
+//se lanza al momento de presionar el primer boton
 #include "lanzador.h"
 #include <QDebug>
-
-
-
 
 lanzador::lanzador(QWidget * parent)
 {
@@ -11,7 +9,7 @@ lanzador::lanzador(QWidget * parent)
     setScene(scene);
     view = new QGraphicsView(this);
     view->setScene(scene);
-    view->scale(1,-1);
+    view->scale(1,-1);//esto es para graficar en la escena como si fuera un plano cartesiano
 
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -27,12 +25,6 @@ lanzador::lanzador(QWidget * parent)
     defensivo = new canon_d();
     scene->addItem(defensivo);
 
-    /*BalaO = new balaO();
-    BalaO->setPosx(500);
-    BalaO->setPosy(300);
-    BalaO->setPos(500,300);*/
-
-    //scene->addItem(BalaO);
     time = new QTimer;
     time->start(200);
     connect(time,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
@@ -41,7 +33,7 @@ lanzador::lanzador(QWidget * parent)
 }
 
 
-
+//la funcion actualizacion le da la posicion a los cañones
 void lanzador::Actualizacion1()
 {
     ofensivo->setPosx(this->getXcanonOfensivo());
@@ -51,10 +43,11 @@ void lanzador::Actualizacion1()
     defensivo->setPosx(this->getXcanonDefensivo());
     defensivo->setPosy(this->getYcanonDefensivo());
     defensivo->setPos(this->getXcanonDefensivo(),this->getYcanonDefensivo());
-    //qDebug()<<"Datos ingresados en launcher";
-    //disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
-}
 
+}
+/*La funcion lanzamiento encuentra los datos en los que la bala impacta, al encontrar uno, guarda sus
+datos en listas para ser usados màs tarde para graficarlos
+*/
 void lanzador::Lanzamiento1()
 {
     int flag = 0;
@@ -115,30 +108,27 @@ void lanzador::Lanzamiento1()
         qDebug()<<"bala disparada 3 veces";
         for(int i=0; i<=2;i++){
             if(i==0){
-                grafica(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
+                grafica(tiempo.at(i),vooo1.at(i),angleoo1.at(i));//graficamos la primera linea de balas
                 this->setAngle(angleoo1.at(i));
                 this->setT(tiempo.at(i));
                 this->setV0o(vooo1.at(i));
             }
             else if(i==1){
-                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
+                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));//graficamos la segunda linea de balas
             }
             else if(i==2){
-                grafica3(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
+                grafica3(tiempo.at(i),vooo1.at(i),angleoo1.at(i));//grafica la segunda linea de balas
             }
         }
         prueba1 = new balaO();
         scene->addItem(prueba1);
-        //connect(time,SIGNAL(timeout()), this,SLOT(grafica_fluida()));
+
         disconnect(time,SIGNAL(timeout()), this,SLOT(Lanzamiento1()));
 }
 
 void lanzador::grafica_fluida()
 {
      float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
-    //float aux2=0;
-
-        //aux = this->getT()/10;
 
         aux2 += this->getT()/100;
         vyo= this->getV0o()*sin(this->getAngle()*pi/180)-g*aux;
@@ -156,16 +146,17 @@ void lanzador::grafica_fluida()
         qDebug()<<"Desconectoooo!";
     }
 }
-
+//ingresan los datos para poner en la escena la secuencia de balas
 void lanzador::grafica(int t, int V0o,int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
 
-            num=t/10.0;
+            num=t/10.0;//a el tiempo lo dividimos en 10 para que las 10 balas esten separadas por la misma distancia
+
 
          for (int i = 0 ; i <balaOf.size(); i++) {
-                aux += num;
+                aux += num;//se le suma num ya que es el cual nos representa el timepo
 
              vyo= V0o*sin(angle*pi/180)-g*aux;
              auxX = (this->getXcanonOfensivo()+(V0o*cos(angle*pi/180)*aux))+40;
@@ -241,7 +232,7 @@ void lanzador::grafica3(int t, int V0o, int angle)
 
          }
 }
-
+//se crea lista para graficar luego con las posiciones encontradas
 QList<balaO *> lanzador::diez_bolas()
 {
     QList<balaO*>bala;
@@ -269,7 +260,7 @@ QList<balaO *> lanzador::diez_bolas()
     return bala;
 }
 
-
+//funciones set y get
 int lanzador::getXcanonOfensivo() const
 {
     return XcanonOfensivo;

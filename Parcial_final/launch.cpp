@@ -18,6 +18,7 @@ launch::launch(QWidget * parent)
 //dependiendo del boton presionado por el usuario se selecciona la escena para ser mostrada
 void launch::Actualizacion1()
 {
+   //como lo dice la funcion lanza el lanzador 1
     if(this->getOpcion() ==1){
         lanzar = new lanzador();
         lanzar->show();
@@ -27,6 +28,7 @@ void launch::Actualizacion1()
         lanzar->setXcanonDefensivo(this->getXcanonDefensivo());
         lanzar->setYcanonDefensivo(this->getYcanonDefensivo());
     }
+    //como lo dice la funcion lanza el lanzador 2
     else if(this->getOpcion()==2){
         lanzar2 = new lanzador2();
         lanzar2->show();
@@ -36,6 +38,7 @@ void launch::Actualizacion1()
         lanzar2->setXcanonDefensivo(this->getXcanonDefensivo());
         lanzar2->setYcanonDefensivo(this->getYcanonDefensivo());
     }
+    //como lo dice la funcion lanza el lanzador 3
     else if(this->getOpcion()==3){
         lanzar3 = new lanzador3();
         lanzar3->show();
@@ -45,6 +48,7 @@ void launch::Actualizacion1()
         lanzar3->setXcanonDefensivo(this->getXcanonDefensivo());
         lanzar3->setYcanonDefensivo(this->getYcanonDefensivo());
     }
+    //como lo dice la funcion lanza el lanzador 4
     else if(this->getOpcion()==4){
         lanzar4 = new lanzador4();
         lanzar4->show();
@@ -59,6 +63,8 @@ void launch::Actualizacion1()
     disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
 }
 
+
+//funciones get y set para el funcionamiento
 int launch::getXcanonOfensivo() const
 {
     return XcanonOfensivo;
