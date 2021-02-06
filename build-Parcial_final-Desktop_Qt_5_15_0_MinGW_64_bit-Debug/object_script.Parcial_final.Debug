@@ -5,6 +5,8 @@ debug/canon_o.o
 debug/ingreso_datos.o
 debug/lanzador.o
 debug/lanzador2.o
+debug/lanzador3.o
+debug/lanzador4.o
 debug/launch.o
 debug/main.o
 debug/menu.o
@@ -15,5 +17,7 @@ debug/moc_canon_o.o
 debug/moc_ingreso_datos.o
 debug/moc_lanzador.o
 debug/moc_lanzador2.o
+debug/moc_lanzador3.o
+debug/moc_lanzador4.o
 debug/moc_launch.o
 debug/moc_menu.o

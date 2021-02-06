@@ -5,6 +5,8 @@ release/canon_o.o
 release/ingreso_datos.o
 release/lanzador.o
 release/lanzador2.o
+release/lanzador3.o
+release/lanzador4.o
 release/launch.o
 release/main.o
 release/menu.o
@@ -15,5 +17,7 @@ release/moc_canon_o.o
 release/moc_ingreso_datos.o
 release/moc_lanzador.o
 release/moc_lanzador2.o
+release/moc_lanzador3.o
+release/moc_lanzador4.o
 release/moc_launch.o
 release/moc_menu.o

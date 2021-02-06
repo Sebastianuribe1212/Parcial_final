@@ -1,5 +1,6 @@
-#ifndef LANZADOR3_H
-#define LANZADOR3_H
+#ifndef LANZADOR4_H
+#define LANZADOR4_H
+
 
 #include <QWidget>
 #include <QGraphicsScene>
@@ -15,7 +16,7 @@
 #include "balao.h"
 #include "balad.h"
 
-class lanzador3: public QGraphicsView
+class lanzador4: public QGraphicsView
 {
     Q_OBJECT
 private:
@@ -28,7 +29,7 @@ private:
     int V0o;
     int angle;
 public:
-    lanzador3(QWidget * parent = 0);
+    lanzador4(QWidget * parent = 0);
     QGraphicsScene * scene;
     QGraphicsView *view ;
     canon_o * ofensivo;
@@ -51,17 +52,17 @@ public:
     void setXcanonDefensivo(int value);
     int getYcanonDefensivo() const;
     void setYcanonDefensivo(int value);
+
     void grafica(int t,  int V0o, int angle );
     void grafica2(int t, int V0o, int angle );
 
+    void dispDefensivos();
     QList<balaO*> diez_bolas();
     QList<balad*> diez_bolasDef();
 
     QList<balad*>balaDef=diez_bolasDef();
 
     QList<balaO*> balaOf= diez_bolas();
-
-
 
     int getAngle() const;
     void setAngle(int value);
@@ -75,8 +76,8 @@ public:
 private slots:
     void Actualizacion1();
     void Lanzamiento1();
-    //void Lanzamiento2();
+
 
 
 };
-#endif // LANZADOR3_H
+#endif // LANZADOR4_H

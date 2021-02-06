@@ -1,24 +1,21 @@
+/*la clase launch agrupa las escenas para ser lanzadas con su configuracion dependiendo
+   de lo que el usuario escoja en el menu.
+*/
 #include "launch.h"
 #include <QDebug>
-int launch::getOpcion() const
-{
-    return opcion;
-}
 
-void launch::setOpcion(int value)
-{
-    opcion = value;
-}
 
 launch::launch(QWidget * parent)
 {
-
+    //iniciamos el slot que me permite abrir las escenas
     timer = new QTimer;
     timer->start(80);
 
     connect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
 }
 
+
+//dependiendo del boton presionado por el usuario se selecciona la escena para ser mostrada
 void launch::Actualizacion1()
 {
     if(this->getOpcion() ==1){
@@ -38,6 +35,24 @@ void launch::Actualizacion1()
 
         lanzar2->setXcanonDefensivo(this->getXcanonDefensivo());
         lanzar2->setYcanonDefensivo(this->getYcanonDefensivo());
+    }
+    else if(this->getOpcion()==3){
+        lanzar3 = new lanzador3();
+        lanzar3->show();
+        lanzar3->setXcanonOfensivo(this->getXcanonOfensivo());
+        lanzar3->setYcanonOfensivo(this->getYcanonOfensivo());
+
+        lanzar3->setXcanonDefensivo(this->getXcanonDefensivo());
+        lanzar3->setYcanonDefensivo(this->getYcanonDefensivo());
+    }
+    else if(this->getOpcion()==4){
+        lanzar4 = new lanzador4();
+        lanzar4->show();
+        lanzar4->setXcanonOfensivo(this->getXcanonOfensivo());
+        lanzar4->setYcanonOfensivo(this->getYcanonOfensivo());
+
+        lanzar4->setXcanonDefensivo(this->getXcanonDefensivo());
+        lanzar4->setYcanonDefensivo(this->getYcanonDefensivo());
     }
     timer->stop();
    // qDebug()<<"Datos ingresados en launch";
@@ -83,4 +98,12 @@ void launch::setYcanonDefensivo(int value)
 {
     YcanonDefensivo = value;
 }
+int launch::getOpcion() const
+{
+    return opcion;
+}
 
+void launch::setOpcion(int value)
+{
+    opcion = value;
+}

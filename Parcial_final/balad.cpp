@@ -13,9 +13,9 @@ QRectF balad::boundingRect() const
 
 void balad::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawEllipse(boundingRect());
     painter->setBrush(Qt::blue);
+    painter->drawEllipse(boundingRect());
+    painter->setBrush(Qt::black);
     painter->drawEllipse(boundingRect().center(),4,4);
 }
 

@@ -6,6 +6,8 @@
 #include <QGraphicsView>
 #include "lanzador.h"
 #include "lanzador2.h"
+#include "lanzador3.h"
+#include "lanzador4.h"
 class launch: public QGraphicsView
 {
     Q_OBJECT
@@ -22,6 +24,10 @@ public:
     QTimer *timer;
 
     lanzador2 * lanzar2;
+
+    lanzador3* lanzar3;
+
+    lanzador4 * lanzar4;
     int getXcanonOfensivo() const;
     void setXcanonOfensivo(int value);
     int getYcanonOfensivo() const;

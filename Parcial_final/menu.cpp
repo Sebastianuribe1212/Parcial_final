@@ -1,3 +1,4 @@
+/*La gui menu, implementa la aquisisción de datos, además de dar paso a las escenas que nos muestran las pruebas con los parametros*/
 #include "menu.h"
 #include "ui_menu.h"
 #include <QDebug>
@@ -26,6 +27,7 @@ void menu::on_Ingresardatos_clicked()
     connect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
 }
 
+//actualizacion es slot que recibe datos si salimos de la gui ingreso de datos al terminar el proceso
 void menu::Actualizacion1()
 {
     if(datos->getSalir()==true){
@@ -47,6 +49,7 @@ void menu::Actualizacion1()
     }
 }
 
+//boton para abrir la primera escena, hace set de la posición de los cañones
 void menu::on_pushButton_clicked()
 {
     if(this->getIngreso_datos() == true){
@@ -67,6 +70,7 @@ void menu::on_pushButton_clicked()
 
 }
 
+//boton para abrir la segunda escena, hace set de la posición de los cañones
 void menu::on_pushButton_2_clicked()
 {
     if(this->getIngreso_datos() == true){
@@ -85,8 +89,48 @@ void menu::on_pushButton_2_clicked()
         QMessageBox::information(this,tr("ERROR"),tr("Ingresa los datos antes de seguir"));
     }
 }
+//boton para abrir la tercera escena, hace set de la posición de los cañones
+void menu::on_pushButton_3_clicked()
+{
+    if(this->getIngreso_datos() == true){
+        lanza = new launch();
+        lanza->setOpcion(3);
+        lanza->setXcanonOfensivo(this->getXcanonOfensivo());
+        lanza->setYcanonOfensivo(this->getYcanonOfensivo());
+        lanza->setXcanonDefensivo(this->getXcanonDefensivo());
+        lanza->setYcanonDefensivo(this->getYcanonDefensivo());
+
+       // qDebug()<<"lanzador abierto";
+    }
 
 
+ else{
+        QMessageBox::information(this,tr("ERROR"),tr("Ingresa los datos antes de seguir"));
+    }
+}
+
+//boton para abrir la cuarta escena, hace set de la posición de los cañones
+void menu::on_pushButton_4_clicked()
+{
+    if(this->getIngreso_datos() == true){
+        lanza = new launch();
+        lanza->setOpcion(4);
+        lanza->setXcanonOfensivo(this->getXcanonOfensivo());
+        lanza->setYcanonOfensivo(this->getYcanonOfensivo());
+        lanza->setXcanonDefensivo(this->getXcanonDefensivo());
+        lanza->setYcanonDefensivo(this->getYcanonDefensivo());
+
+       // qDebug()<<"lanzador abierto";
+    }
+
+
+ else{
+        QMessageBox::information(this,tr("ERROR"),tr("Ingresa los datos antes de seguir"));
+    }
+}
+
+
+//creamos funciones de set y get para el funcionamiento
 bool menu::getIngreso_datos() const
 {
     return ingreso_datos;
@@ -136,5 +180,7 @@ void menu::setYcanonDefensivo(int value)
 {
     YcanonDefensivo = value;
 }
+
+
 
 

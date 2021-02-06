@@ -73,7 +73,7 @@ void lanzador2::Lanzamiento1()
 
                 for(t = 0; ; t++){
                      Vy0 = (V0o*sin(angle*pi/180))-g*t;
-                    x = this->getYcanonDefensivo()+Vxo*t;
+                    x = this->getYcanonDefensivo()+Vxo*t*1;
                     y = (this->getYcanonDefensivo() + Vy0*t) -(g*(t*t)/2);
 
                     if(sqrt(pow((this->getXcanonDefensivo() - x),2)+pow((this->getYcanonDefensivo()- y),2)) < 0.025*(this->getXcanonDefensivo())){
@@ -201,9 +201,6 @@ void lanzador2::grafica3(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
-
-
-
             num=t/10.0;
 
          for (int i = 0 ; i <balaOf3.size(); i++) {
@@ -211,8 +208,6 @@ void lanzador2::grafica3(int t, int V0o, int angle)
 
              vyo= V0o*sin(angle*pi/180)-g*aux;
              auxX = (this->getXcanonDefensivo()+(V0o*-cos(angle*pi/180)*aux))-40;
-
-
              auxY = this->getYcanonDefensivo()+vyo*aux-(0.5*g*(aux*aux))+40;
              balaOf3.at(i)->setPosx(auxX);
              balaOf3.at(i)->setPosy(auxY);

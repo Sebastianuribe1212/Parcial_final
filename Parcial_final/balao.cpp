@@ -14,7 +14,7 @@ void balaO::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 {
     painter->setBrush(Qt::red);
     painter->drawEllipse(boundingRect());
-    painter->setBrush(Qt::blue);
+    painter->setBrush(Qt::black);
     painter->drawEllipse(boundingRect().center(),4,4);
 }
 

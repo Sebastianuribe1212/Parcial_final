@@ -1,8 +1,11 @@
-#include "lanzador3.h"
+#include "lanzador4.h"
+
 #include <QDebug>
 
 
-lanzador3::lanzador3(QWidget * parent)
+
+
+lanzador4::lanzador4(QWidget * parent)
 {
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1000,600);
@@ -40,7 +43,7 @@ lanzador3::lanzador3(QWidget * parent)
 
 
 
-void lanzador3::Actualizacion1()
+void lanzador4::Actualizacion1()
 {
     ofensivo->setPosx(this->getXcanonOfensivo());
     ofensivo->setPosy(this->getYcanonOfensivo());
@@ -53,7 +56,7 @@ void lanzador3::Actualizacion1()
     //disconnect(timer,SIGNAL(timeout()), this,SLOT(Actualizacion1()));
 }
 
-void lanzador3::Lanzamiento1()
+void lanzador4::Lanzamiento1()
 {
     int flag = 0;
         float x,y, pi = 3.1416, g = 9.8;
@@ -89,7 +92,7 @@ void lanzador3::Lanzamiento1()
                         qDebug()<<"tiempo: "<<t<<" angulo: "<<angle<<" vxo: "<<Vxo<<" V0o: "<<V0o;
 
 
-                        flag += 3;
+                        flag += 1;
                         V0o += 50;
 
                         break;
@@ -114,10 +117,12 @@ void lanzador3::Lanzamiento1()
         for(int i=0; i<=2;i++){
             if(i==0){
                 grafica(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
-                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
                 this->setAngle(angleoo1.at(i));
                 this->setT(tiempo.at(i));
                 this->setV0o(vooo1.at(i));
+            }
+            else if(i==1){
+                grafica2(tiempo.at(i),vooo1.at(i),angleoo1.at(i));
             }
 
         }
@@ -129,7 +134,7 @@ void lanzador3::Lanzamiento1()
 
 
 
-void lanzador3::grafica(int t, int V0o,int angle)
+void lanzador4::grafica(int t, int V0o,int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
@@ -153,19 +158,90 @@ void lanzador3::grafica(int t, int V0o,int angle)
 
 }
 
-void lanzador3::grafica2(int t, int V0o, int angle)
+
+
+void lanzador4::dispDefensivos()
+{
+    int flag = 0;
+    bool flag2 = 0;
+    float x,y,x2,y2;
+    float aux,auy, pi=3.1416, g = 9.8;
+    float Vxo,Vy0, Vxoo,Vyoo;
+    int V0o = 0;
+    int t = 0;
+    int angle = 0;
+    Vxoo = this->getV0o()*cos((this->getAngle())*pi/180);
+    Vyoo = this->getV0o()*sin((this->getAngle())*pi/180);
+    for(V0o = this->getV0o(); ; V0o += 5){
+        for(angle = 0; angle < 90; angle++){
+            Vxo = V0o*cos((angle+90)*pi/180);
+            Vy0 = V0o*sin((angle+90)*pi/180);
+            x = 0.0;
+            y = 0.0;
+            x2 = 0.0;
+            y2 = 0.0;
+            for(t = 0; ; t++){
+                x2 = Vxoo*(t+2);
+                y2 = this->getYcanonOfensivo() + Vyoo*(t+2) -(0.5*g*(t+2)*(t+2));
+                x = this->getXcanonDefensivo()+Vxo*t;
+                y = this->getYcanonDefensivo() + Vy0*t -(0.5*g*t*t);
+                for(int t2 = t; ;t2++){
+                    aux = this->getXcanonDefensivo()+Vxo*t2;
+                    auy =this->getYcanonDefensivo() + Vy0*t2 -(0.5*g*t2*t2);
+                    if(sqrt(pow((this->getXcanonOfensivo() - aux),2)+pow((this->getYcanonOfensivo() - auy),2)) < 0.05*(this->getXcanonOfensivo())){
+                        flag2 = 1;
+                        break;
+                    }
+                    if(auy < 0){
+                        break;
+                    }
+                }
+                if(flag2){
+                    flag2 = 0;
+                    break;
+                }
+                if(sqrt(pow((this->getXcanonDefensivo() - x2),2)+pow((this->getYcanonDefensivo() - y2),2)) < 0.05*(this->getXcanonOfensivo())){
+                    break;
+                }
+                if(sqrt(pow((x2 - x),2)+pow((y2 - y),2)) < 0.05*(this->getXcanonOfensivo())){
+                    if(y<0) y = 0;
+
+                    //grafica2(t2);
+                    flag += 3;
+                    V0o += 50;
+                    break;
+                }
+                if(y < 0){
+                    break;
+                }
+            }
+            if(flag == 3) break;
+
+
+        }
+        if(flag == 3) break;
+    }
+    if(flag != 3){
+
+    }
+}
+
+
+void lanzador4::grafica2(int t, int V0o, int angle)
 {
     float aux =0, auxX,auxY,g = 9.81,  pi =3.1416, vyo;
     double num;
 
             num=t/10.0;
 
-         for (int i = 0 ; i <balaOf.size(); i++) {
+         for (int i = 0 ; i <balaDef.size(); i++) {
                 aux += num;
 
              vyo= V0o*sin(angle*pi/180)-g*aux;
-             auxX = (this->getXcanonDefensivo()+(V0o*-cos(angle*pi/180)*aux))-40;
-             auxY = this->getYcanonDefensivo()+vyo*aux-(0.5*g*(aux*aux))+40;
+             auxX = (this->getXcanonOfensivo()+(V0o*cos(angle*pi/180)*aux))+40;
+             auxY = this->getYcanonOfensivo()+vyo*aux-(0.5*g*(aux*aux))+40;
+
+             //balaOf.at(i)->scale();
              balaDef.at(i)->setPosx(auxX);
              balaDef.at(i)->setPosy(auxY);
              balaDef.at(i)->setPos(auxX,auxY);
@@ -174,10 +250,7 @@ void lanzador3::grafica2(int t, int V0o, int angle)
 
          }
 }
-
-
-
-QList<balaO *> lanzador3::diez_bolas()
+QList<balaO *> lanzador4::diez_bolas()
 {
     QList<balaO*>bala;
     balaO * bala1 = new balaO();
@@ -204,7 +277,8 @@ QList<balaO *> lanzador3::diez_bolas()
     return bala;
 }
 
-QList<balad *> lanzador3::diez_bolasDef()
+
+QList<balad *> lanzador4::diez_bolasDef()
 {
     QList<balad*>bala;
     balad * bala1 = new balad();
@@ -232,72 +306,74 @@ QList<balad *> lanzador3::diez_bolasDef()
 }
 
 
-int lanzador3::getXcanonOfensivo() const
+int lanzador4::getXcanonOfensivo() const
 {
     return XcanonOfensivo;
 }
 
-void lanzador3::setXcanonOfensivo(int value)
+void lanzador4::setXcanonOfensivo(int value)
 {
     XcanonOfensivo = value;
 }
 
-int lanzador3::getYcanonOfensivo() const
+int lanzador4::getYcanonOfensivo() const
 {
     return YcanonOfensivo;
 }
 
-void lanzador3::setYcanonOfensivo(int value)
+void lanzador4::setYcanonOfensivo(int value)
 {
     YcanonOfensivo = value;
 }
 
-int lanzador3::getXcanonDefensivo() const
+int lanzador4::getXcanonDefensivo() const
 {
     return XcanonDefensivo;
 }
 
-void lanzador3::setXcanonDefensivo(int value)
+void lanzador4::setXcanonDefensivo(int value)
 {
     XcanonDefensivo = value;
 }
 
-int lanzador3::getYcanonDefensivo() const
+int lanzador4::getYcanonDefensivo() const
 {
     return YcanonDefensivo;
 }
 
-void lanzador3::setYcanonDefensivo(int value)
+void lanzador4::setYcanonDefensivo(int value)
 {
     YcanonDefensivo = value;
 }
 
-int lanzador3::getAngle() const
+
+
+int lanzador4::getAngle() const
 {
     return angle;
 }
 
-void lanzador3::setAngle(int value)
+void lanzador4::setAngle(int value)
 {
     angle = value;
 }
 
-int lanzador3::getV0o() const
+int lanzador4::getV0o() const
 {
     return V0o;
 }
 
-void lanzador3::setV0o(int value)
+void lanzador4::setV0o(int value)
 {
     V0o = value;
 }
 
-int lanzador3::getT() const
+int lanzador4::getT() const
 {
     return t;
 }
 
-void lanzador3::setT(int value)
+void lanzador4::setT(int value)
 {
     t = value;
 }

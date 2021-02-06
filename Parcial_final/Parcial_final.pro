@@ -17,6 +17,7 @@ SOURCES += \
     lanzador.cpp \
     lanzador2.cpp \
     lanzador3.cpp \
+    lanzador4.cpp \
     launch.cpp \
     main.cpp \
     menu.cpp
@@ -30,6 +31,7 @@ HEADERS += \
     lanzador.h \
     lanzador2.h \
     lanzador3.h \
+    lanzador4.h \
     launch.h \
     menu.h
 
